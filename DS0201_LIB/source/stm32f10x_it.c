@@ -4,7 +4,7 @@
 #include "stm32f10x_it.h"
 #include "usb_lib.h"
 #include "usb_istr.h"
-#include "lcd.h"
+#include "Lcd.h"
 #include "HW_V1_Config.h"
 
 void NMIException(void)
