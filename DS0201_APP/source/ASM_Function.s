@@ -77,7 +77,7 @@ __SD_Set_Changed          ;void __SD_Set_Changed(void)
     B       0x0800416D
 
 ;*******************************************************************************
-__Add_Color             ;void __Add_Color(unsigned short x,unsigned short y,unsigned short Color)
+__Add_Color:            ;void __Add_Color(unsigned short x,unsigned short y,unsigned short Color)
 
     STMDB   SP!, {R4-R7}       
 
@@ -239,7 +239,7 @@ ADD_3:
 
 
 ;*******************************************************************************
-__Erase_Color             ;void __Erase_Color(unsigned short x,unsigned short y,unsigned short Color)
+__Erase_Color:            ;void __Erase_Color(unsigned short x,unsigned short y,unsigned short Color)
 
     STMDB   SP!, {R4-R7}       
 
@@ -437,7 +437,7 @@ ERASE_3:
     BX      LR
 
 ;*******************************************************************************
-__Get_Pixel     ;unsigned short __Get_Pixel(unsigned short x0,unsigned short y0)
+__Get_Pixel:    ;unsigned short __Get_Pixel(unsigned short x0,unsigned short y0)
 
     STMDB   SP!, {R4-R7}       
 
