@@ -3,7 +3,7 @@ File Name: lcd.c
 *******************************************************************************/
 #include "Function.h"
 #include "Menu.h"
-#include "lcd.h"
+#include "Lcd.h"
 #include "stm32f10x_it.h"
 #include "HW_V1_Config.h"
 #include "ASM_Function.h"
