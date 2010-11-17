@@ -30,14 +30,14 @@ _Minimum_Stack_Size = 0x100 ;
 
 /* include the memory spaces definitions sub-script */
 /* Linker subscript for STM32F10x definitions with 128K Flash and 20K RAM */
-/* Modified for DSO Nano with STM32F103RB and offset for dfu loader and lib */
+/* Modified for DSO Nano lib with STM32F103RB and offset for dfu loader and app */
 
 /* Memory Spaces Definitions */
 
 MEMORY
 {
-  RAM (xrw) : ORIGIN = 0x20001800, LENGTH = 20K-0x1800
-  FLASH (rx) : ORIGIN = 0x800C000, LENGTH = 128K-0xC000
+  RAM (xrw) : ORIGIN = 0x20000000, LENGTH = 0x1800
+  FLASH (rx) : ORIGIN = 0x8004000, LENGTH = 0xC000-0x4000
   FLASHB1 (rx) : ORIGIN = 0x00000000, LENGTH = 0
   EXTMEMB0 (rx) : ORIGIN = 0x00000000, LENGTH = 0
   EXTMEMB1 (rx) : ORIGIN = 0x00000000, LENGTH = 0

@@ -1,15 +1,17 @@
 #
-# GNU Makefile for DSO Nano
+# GNU Makefile for DSO Nano library
 # Copyright 2010 Tormod Volden
 #
 
 BASE = ../../..
-APP = $(BASE)/DS0201_APP
+LIB = $(BASE)/DS0201_LIB
+USB_LIB = $(BASE)/USBLib
 
 # STM library location
 STM_LIB = $(BASE)/library
 
-INCLUDES = -I $(APP)/include \
+INCLUDES = -I $(LIB)/include \
+           -I $(USB_LIB)/inc \
            -I $(STM_LIB)/inc
 
 # Note that you need to add the toolchain arm-cross/bin to your PATH
@@ -30,17 +32,30 @@ LFLAGS  = -T stm32f10x_flash_offset.ld -nostartfiles $(MFLAGS)
 CPFLAGS = -j .isr_vector -j .flashtext -j .text
 ODFLAGS = -S
 
-CSRC = $(APP)/source/Calculate.c \
-       $(APP)/source/Files.c \
-       $(APP)/source/Function.c \
-       $(APP)/source/HW_V1_Config.c \
-       $(APP)/source/Lcd.c \
-       $(APP)/source/Menu.c \
-       $(APP)/source/main.c \
-       $(APP)/source/stm32f10x_it.c
+CSRC = \
+       $(LIB)/source/HW_V1_Config.c \
+       $(LIB)/source/Lcd.c \
+       $(LIB)/source/main.c \
+       $(LIB)/source/memory.c \
+       $(LIB)/source/msd.c \
+       $(LIB)/source/scsi_data.c \
+       $(LIB)/source/stm32f10x_it.c \
+       $(LIB)/source/usb_bot.c \
+       $(LIB)/source/usb_desc.c \
+       $(LIB)/source/usb_endp.c \
+       $(LIB)/source/usb_istr.c \
+       $(LIB)/source/usb_prop.c \
+       $(LIB)/source/usb_pwr.c \
+       $(LIB)/source/usb_scsi.c \
+       $(USB_LIB)/src/usb_core.c \
+       $(USB_LIB)/src/usb_init.c \
+       $(USB_LIB)/src/usb_int.c \
+       $(USB_LIB)/src/usb_mem.c \
+       $(USB_LIB)/src/usb_regs.c
 
 STM32SRCS = $(STM_LIB)/src/stm32f10x_flash.c \
             $(STM_LIB)/src/stm32f10x_nvic.c \
+            $(STM_LIB)/src/stm32f10x_spi.c \
             $(STM_LIB)/src/stm32f10x_rcc.c
 
 CSRC += $(STM32SRCS)
@@ -55,19 +70,17 @@ AOBJ = $(ASRC:.s=.o)
 all: binaries
 
 # The assembly has to be converted from IAR style
-ASM_Function-gcc.s: $(APP)/source/ASM_Function.s
-	./iar2gas < $(APP)/source/ASM_Function.s | $(CPP) -DGCC > ASM_Function-gcc.s
-#	$(CC) -E -DGCC ASM_Function-gcc.S > ASM_Function-gcc.s
-#	$(AS) $(AFLAGS) -am --defsym GCC=yes -o ASM_Function-gcc.o
+ASM_Function-gcc.s: $(LIB)/source/ASM_Function.s
+	./iar2gas < $(LIB)/source/ASM_Function.s | $(CPP) -DGCC > ASM_Function-gcc.s
 
-dso-app.elf: $(COBJ) $(AOBJ)
-	$(CC) $(LFLAGS) -o dso-app.elf $(AOBJ) $(COBJ)
+dso-lib.elf: $(COBJ) $(AOBJ)
+	$(CC) $(LFLAGS) -o dso-lib.elf $(AOBJ) $(COBJ)
 
-binaries: dso-app.elf
-	$(OD) $(ODFLAGS) dso-app.elf > dso-app.lst
-	$(CP) $(CPFLAGS) -Obinary dso-app.elf dso-app.bin
-	$(CP) $(CPFLAGS) -Oihex dso-app.elf dso-app.hex
+binaries: dso-lib.elf
+	$(OD) $(ODFLAGS) dso-lib.elf > dso-lib.lst
+	$(CP) $(CPFLAGS) -Obinary dso-lib.elf dso-lib.bin
+	$(CP) $(CPFLAGS) -Oihex dso-lib.elf dso-lib.hex
 
 clean:
-	rm -f *.o $(APP)/source/*.o $(STM_LIB)/src/*.o ASM_Function-gcc.s \
-	    dso-app.elf dso-app.bin dso-app.hex dso-app.lst
+	rm -f *.o $(LIB)/source/*.o $(STM_LIB)/src/*.o $(USB_LIB)/src/*.o ASM_Function-gcc.s \
+	    dso-lib.elf dso-lib.bin dso-lib.hex dso-lib.lst
