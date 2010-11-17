@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Converts IAR assembly file to something GCC can accept
+# Copyright 2010 Tormod Volden
+
+sed \
+    -e 's/;\(.*\)$/\/* \1 *\//' \
+    -e 's/^\([^ =]*\)[ ]*= \(.*\)/.equiv \1, \2/' \
+    -e '/^__/N; s/^\(__[^ ]*\)[ ]*\(\/\*.*\)\r*\n.*B\(.*\)$/.thumb_set \1, \3 \2/' \
+    -e 's///g' \
+    -e '/^__/i \
+.thumb_func
+'
