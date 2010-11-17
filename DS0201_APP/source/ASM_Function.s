@@ -2,7 +2,15 @@
 ; File name  : ASM_Function.s 
 ;*******************************************************************************
 
+#ifdef GCC
+#define EXPORT .globl
+.cpu cortex-m3
+.syntax unified
+.thumb
+.text
+#else
   RSEG CODE:CODE(2)
+#endif
   
   EXPORT __CTR_HP
   EXPORT __USB_Istr
@@ -538,7 +546,11 @@ __Get_Pixel     ;unsigned short __Get_Pixel(unsigned short x0,unsigned short y0)
     BX      LR
 
 
+#ifdef GCC
+  .end
+#else
   END
+#endif
 
 ;******************************* END OF FILE ***********************************
   
