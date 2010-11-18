@@ -16,8 +16,8 @@
   EXTERN Get_Ref_Wave
   EXTERN SD_Set_Changed
   
-  EXPORT __APP_Start  
-  
+  EXPORT __BRANCH_TABLE
+
 #ifdef __GNUC__
 .cpu cortex-m3
 .syntax unified
@@ -30,8 +30,8 @@
 ;*******************************************************************************
 ; Table of library function start addresses
 ;*******************************************************************************
-__APP_Start                ;void __APP_Start(void)
-    B       0x0800C121
+__BRANCH_TABLE             ; needed placeholder, used to be __APP_Start
+    B       0x00000000
 __USB_Istr                 ;
     B       USB_Istr
 __CTR_HP                   ;
