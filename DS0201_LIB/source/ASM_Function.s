@@ -3,7 +3,7 @@
 ; File description: start addresses for exported functions
 ;*******************************************************************************
 
-#ifdef GCC
+#ifdef __GNUC__
 #define EXPORT .globl
 #define EXTERN .globl
 #endif
@@ -18,7 +18,7 @@
   
   EXPORT __APP_Start  
   
-#ifdef GCC
+#ifdef __GNUC__
 .cpu cortex-m3
 .syntax unified
 .thumb
@@ -46,7 +46,7 @@ __Get_Ref_Wave             ;
     B       Get_Ref_Wave
 __SD_Set_Changed           ;void SD_Set_Changed(void);
     B       SD_Set_Changed
-#ifdef GCC
+#ifdef __GNUC__
   .end
 #else
   END

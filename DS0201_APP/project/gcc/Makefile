@@ -15,7 +15,6 @@ INCLUDES = -I $(APP)/include \
 # Note that you need to add the toolchain arm-cross/bin to your PATH
 # Toolchain setup
 CROSS_COMPILE = arm-none-eabi-
-CPP     = $(CROSS_COMPILE)cpp
 CC      = $(CROSS_COMPILE)gcc
 LD      = $(CROSS_COMPILE)ld -v
 AR      = $(CROSS_COMPILE)ar
@@ -55,10 +54,8 @@ AOBJ = $(ASRC:.s=.o)
 all: binaries
 
 # The assembly has to be converted from IAR style
-ASM_Function-gcc.s: $(APP)/source/ASM_Function.s
-	./iar2gas < $(APP)/source/ASM_Function.s | $(CPP) -DGCC > ASM_Function-gcc.s
-#	$(CC) -E -DGCC ASM_Function-gcc.S > ASM_Function-gcc.s
-#	$(AS) $(AFLAGS) -am --defsym GCC=yes -o ASM_Function-gcc.o
+ASM_Function-gcc.S: $(APP)/source/ASM_Function.s
+	./iar2gas < $(APP)/source/ASM_Function.s > ASM_Function-gcc.S
 
 dso-app.elf: $(COBJ) $(AOBJ)
 	$(CC) $(LFLAGS) -o dso-app.elf $(AOBJ) $(COBJ)
@@ -69,5 +66,5 @@ binaries: dso-app.elf
 	$(CP) $(CPFLAGS) -Oihex dso-app.elf dso-app.hex
 
 clean:
-	rm -f *.o $(APP)/source/*.o $(STM_LIB)/src/*.o ASM_Function-gcc.s \
+	rm -f *.o $(APP)/source/*.o $(STM_LIB)/src/*.o ASM_Function-gcc.[sS] \
 	    dso-app.elf dso-app.bin dso-app.hex dso-app.lst

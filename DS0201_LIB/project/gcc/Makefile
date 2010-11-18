@@ -17,7 +17,6 @@ INCLUDES = -I $(LIB)/include \
 # Note that you need to add the toolchain arm-cross/bin to your PATH
 # Toolchain setup
 CROSS_COMPILE = arm-none-eabi-
-CPP     = $(CROSS_COMPILE)cpp
 CC      = $(CROSS_COMPILE)gcc
 LD      = $(CROSS_COMPILE)ld -v
 AR      = $(CROSS_COMPILE)ar
@@ -70,8 +69,8 @@ AOBJ = $(ASRC:.s=.o)
 all: binaries
 
 # The assembly has to be converted from IAR style
-ASM_Function-gcc.s: $(LIB)/source/ASM_Function.s
-	./iar2gas < $(LIB)/source/ASM_Function.s | $(CPP) -DGCC > ASM_Function-gcc.s
+ASM_Function-gcc.S: $(LIB)/source/ASM_Function.s
+	./iar2gas < $(LIB)/source/ASM_Function.s > ASM_Function-gcc.S
 
 dso-lib.elf: $(COBJ) $(AOBJ)
 	$(CC) $(LFLAGS) -o dso-lib.elf $(AOBJ) $(COBJ)
@@ -82,5 +81,6 @@ binaries: dso-lib.elf
 	$(CP) $(CPFLAGS) -Oihex dso-lib.elf dso-lib.hex
 
 clean:
-	rm -f *.o $(LIB)/source/*.o $(STM_LIB)/src/*.o $(USB_LIB)/src/*.o ASM_Function-gcc.s \
+	rm -f *.o $(LIB)/source/*.o $(STM_LIB)/src/*.o $(USB_LIB)/src/*.o \
+	    ASM_Function-gcc.[sS] \
 	    dso-lib.elf dso-lib.bin dso-lib.hex dso-lib.lst

@@ -2,7 +2,7 @@
 ; File name  : ASM_Function.s 
 ;*******************************************************************************
 
-#ifdef GCC
+#ifdef __GNUC__
 #define EXPORT .globl
 .cpu cortex-m3
 .syntax unified
@@ -546,7 +546,7 @@ __Get_Pixel:    ;unsigned short __Get_Pixel(unsigned short x0,unsigned short y0)
     BX      LR
 
 
-#ifdef GCC
+#ifdef __GNUC__
   .end
 #else
   END
