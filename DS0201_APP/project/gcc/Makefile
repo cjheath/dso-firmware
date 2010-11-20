@@ -22,10 +22,11 @@ AS      = $(CROSS_COMPILE)as
 CP      = $(CROSS_COMPILE)objcopy
 OD      = $(CROSS_COMPILE)objdump
   
+LNKSCRIPT = stm32f10x_flash_offset.ld
 MFLAGS  = -mcpu=cortex-m3 -mthumb
 ASFLAGS = $(MFLAGS)
 CFLAGS  = $(INCLUDES) -c -fno-common -Os -g $(MFLAGS) -Wp,-DGCC
-LFLAGS  = -T stm32f10x_flash_offset.ld -nostartfiles $(MFLAGS)
+LFLAGS  = -T $(LNKSCRIPT) -nostartfiles $(MFLAGS)
 CPFLAGS = -j .isr_vector -j .flashtext -j .text -j .data
 ODFLAGS = -S
 
@@ -57,7 +58,7 @@ all: binaries
 ASM_Function-gcc.S: $(APP)/source/ASM_Function.s
 	sed -f iar2gas < $(APP)/source/ASM_Function.s > ASM_Function-gcc.S
 
-dso-app.elf: $(COBJ) $(AOBJ)
+dso-app.elf: $(COBJ) $(AOBJ) $(LNKSCRIPT)
 	$(CC) $(LFLAGS) -o dso-app.elf $(AOBJ) $(COBJ)
 
 binaries: dso-app.elf
