@@ -55,7 +55,7 @@ all: binaries
 
 # The assembly has to be converted from IAR style
 ASM_Function-gcc.S: $(APP)/source/ASM_Function.s
-	./iar2gas < $(APP)/source/ASM_Function.s > ASM_Function-gcc.S
+	sed -f iar2gas < $(APP)/source/ASM_Function.s > ASM_Function-gcc.S
 
 dso-app.elf: $(COBJ) $(AOBJ)
 	$(CC) $(LFLAGS) -o dso-app.elf $(AOBJ) $(COBJ)

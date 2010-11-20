@@ -70,7 +70,7 @@ all: binaries
 
 # The assembly has to be converted from IAR style
 ASM_Function-gcc.S: $(LIB)/source/ASM_Function.s
-	./iar2gas < $(LIB)/source/ASM_Function.s > ASM_Function-gcc.S
+	sed -f iar2gas < $(LIB)/source/ASM_Function.s > ASM_Function-gcc.S
 
 dso-lib.elf: $(COBJ) $(AOBJ)
 	$(CC) $(LFLAGS) -o dso-lib.elf $(AOBJ) $(COBJ)
