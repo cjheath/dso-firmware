@@ -28,7 +28,7 @@ MFLAGS  = -mcpu=cortex-m3 -mthumb
 ASFLAGS = $(MFLAGS)
 CFLAGS  = $(INCLUDES) -c -fno-common -Os -g $(MFLAGS) -Wp,-DGCC
 LFLAGS  = -T stm32f10x_flash_offset.ld -nostartfiles $(MFLAGS)
-CPFLAGS = -j .isr_vector -j .flashtext -j .text
+CPFLAGS = -j .isr_vector -j .flashtext -j .text -j .data
 ODFLAGS = -S
 
 CSRC = \
