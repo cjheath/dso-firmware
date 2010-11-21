@@ -25,10 +25,8 @@ OD      = $(CROSS_COMPILE)objdump
 LNKSCRIPT = stm32f10x_flash_offset.ld
 MFLAGS  = -mcpu=cortex-m3 -mthumb
 ASFLAGS = $(MFLAGS)
-CFLAGS  = $(INCLUDES) -c -fno-common -Os -g $(MFLAGS) -Wp,-DGCC
+CFLAGS  = $(INCLUDES) -c -fno-common -Os -g $(MFLAGS)
 LFLAGS  = -T $(LNKSCRIPT) -nostartfiles $(MFLAGS)
-CPFLAGS = -j .isr_vector -j .flashtext -j .text -j .data
-ODFLAGS = -S
 
 CSRC = $(APP)/source/Calculate.c \
        $(APP)/source/Files.c \
@@ -62,9 +60,9 @@ dso-app.elf: $(COBJ) $(AOBJ) $(LNKSCRIPT)
 	$(CC) $(LFLAGS) -o dso-app.elf $(AOBJ) $(COBJ)
 
 binaries: dso-app.elf
-	$(OD) $(ODFLAGS) dso-app.elf > dso-app.lst
-	$(CP) $(CPFLAGS) -Obinary dso-app.elf dso-app.bin
-	$(CP) $(CPFLAGS) -Oihex dso-app.elf dso-app.hex
+	$(OD) -S dso-app.elf > dso-app.lst
+	$(CP) -O binary dso-app.elf dso-app.bin
+	$(CP) -O ihex dso-app.elf dso-app.hex
 
 clean:
 	rm -f *.o $(APP)/source/*.o $(STM_LIB)/src/*.o ASM_Function-gcc.[sS] \

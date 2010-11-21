@@ -27,10 +27,8 @@ OD      = $(CROSS_COMPILE)objdump
 LNKSCRIPT = stm32f10x_flash_offset.ld
 MFLAGS  = -mcpu=cortex-m3 -mthumb
 ASFLAGS = $(MFLAGS)
-CFLAGS  = $(INCLUDES) -c -fno-common -Os -g $(MFLAGS) -Wp,-DGCC
+CFLAGS  = $(INCLUDES) -c -fno-common -Os -g $(MFLAGS)
 LFLAGS  = -T $(LNKSCRIPT) -nostartfiles $(MFLAGS)
-CPFLAGS = -j .isr_vector -j .flashtext -j .text -j .data
-ODFLAGS = -S
 
 CSRC = \
        $(LIB)/source/HW_V1_Config.c \
@@ -77,9 +75,9 @@ dso-lib.elf: $(COBJ) $(AOBJ) $(LNKSCRIPT)
 	$(CC) $(LFLAGS) -o dso-lib.elf $(AOBJ) $(COBJ)
 
 binaries: dso-lib.elf
-	$(OD) $(ODFLAGS) dso-lib.elf > dso-lib.lst
-	$(CP) $(CPFLAGS) -Obinary dso-lib.elf dso-lib.bin
-	$(CP) $(CPFLAGS) -Oihex dso-lib.elf dso-lib.hex
+	$(OD) -S dso-lib.elf > dso-lib.lst
+	$(CP) -O binary dso-lib.elf dso-lib.bin
+	$(CP) -O ihex dso-lib.elf dso-lib.hex
 
 clean:
 	rm -f *.o $(LIB)/source/*.o $(STM_LIB)/src/*.o $(USB_LIB)/src/*.o \
