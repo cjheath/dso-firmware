@@ -32,6 +32,8 @@ _Minimum_Stack_Size = 0x100 ;
 /* Linker subscript for STM32F10x definitions with 128K Flash and 20K RAM */
 /* Modified for DSO Nano with STM32F103RB and offset for dfu loader and lib */
 
+ENTRY(Reset_Handler)
+
 /* Memory Spaces Definitions */
 
 MEMORY
