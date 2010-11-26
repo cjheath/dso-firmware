@@ -47,8 +47,8 @@ MEMORY
   EXTMEMB3 (rx) : ORIGIN = 0x00000000, LENGTH = 0
 }
 
-/* higher address of the user mode stack */
-_estack = 0x20005000;
+/* place the end of the stack at the end of the RAM */
+_estack = ORIGIN(RAM)+LENGTH(RAM);
 
 
 
