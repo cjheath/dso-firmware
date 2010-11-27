@@ -68,8 +68,8 @@ AOBJ = $(ASRC:.s=.o)
 all: binaries
 
 # The assembly has to be converted from IAR style
-ASM_Function-gcc.S: $(PRJ)/source/ASM_Function.s
-	sed -f iar2gas < $(PRJ)/source/ASM_Function.s > ASM_Function-gcc.S
+#ASM_Function-gcc.S: $(PRJ)/source/ASM_Function.s
+#	sed -f iar2gas < $(PRJ)/source/ASM_Function.s > ASM_Function-gcc.S
 
 $(NAME).elf: $(AOBJ) $(COBJ) $(LNKSCRIPT)
 	$(CC) $(LFLAGS) -o $(NAME).elf $(AOBJ) $(COBJ)
@@ -81,5 +81,5 @@ binaries: $(NAME).elf
 
 clean:
 	rm -f *.o $(PRJ)/source/*.o $(STM_LIB)/src/*.o $(USB_LIB)/src/*.o \
-	    ASM_Function-gcc.[sS] \
 	    $(NAME).elf $(NAME).bin $(NAME).hex $(NAME).lst
+#	    ASM_Function-gcc.[sS] \
