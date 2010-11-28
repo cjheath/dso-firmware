@@ -41,6 +41,8 @@ CSRC += \
        $(STM_LIB)/src/stm32f10x_flash.c \
        $(STM_LIB)/src/stm32f10x_nvic.c \
        $(STM_LIB)/src/stm32f10x_rcc.c
+CSRC += \
+       stm32f10x_vector.c
 
 COBJ = $(CSRC:.c=.o)
 

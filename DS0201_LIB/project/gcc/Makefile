@@ -56,6 +56,8 @@ CSRC += \
        $(USB_LIB)/src/usb_int.c \
        $(USB_LIB)/src/usb_mem.c \
        $(USB_LIB)/src/usb_regs.c
+CSRC += \
+       stm32f10x_vector.c
 
 COBJ = $(CSRC:.c=.o)
 
