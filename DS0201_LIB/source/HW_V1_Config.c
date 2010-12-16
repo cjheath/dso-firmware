@@ -101,9 +101,9 @@ void NVIC_Configuration(void)
 *******************************************************************************/
 void GPIO_Config(void)
 {
-  GPIOA_CRL = 0x88888080;  /* GPIOA Bit0-7 
+  GPIOA_CRL = 0x88888000;  /* GPIOA Bit0-7 
                 |||||||+----- Nib0  Ain   Analog input
-                ||||||+------ Nib1  NC    Pull up input
+                ||||||+------ Nib1  Ain   Analog input (NC on Nano v1)
                 |||||+------- Nib2  Vbat  Analog input  
                 ||||+-------- Nib3  NC    Pull up input  
                 |||+--------- Nib4  KP    Pull up input  
