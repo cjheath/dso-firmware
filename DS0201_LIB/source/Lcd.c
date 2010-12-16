@@ -196,11 +196,11 @@ void LCD_Initial(void)
   LCD_nRD_HIGH();       
   LCD_RS_HIGH();        //RS=1        
   LCD_nRST_HIGH(); 
-  Delayms(1);           //RST=1£¬Delay 1ms      
+  Delayms(1);           //RST=1, Delay 1ms      
   LCD_nRST_LOW(); 
-  Delayms(1);          //RST=0 Reset LCD£¬Delay 1ms      
+  Delayms(1);          //RST=0 Reset LCD, Delay 1ms      
   LCD_nRST_HIGH(); 
-  Delayms(5);          //RST=1£¬Delay 5 ms  
+  Delayms(5);          //RST=1, Delay 5 ms  
  //----------------ST7781 Internal Register Initial------------//         
   LCD_WR_REG(0x00FF, 0x0001);  
   LCD_WR_REG(0x00F3, 0x0008);  

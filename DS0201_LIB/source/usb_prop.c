@@ -154,7 +154,7 @@ void MASS_init()
     NOP_Process();
   }*/
   
-  for(tmp=0;tmp<100000;++tmp) NOP_Process();//CXG:加上这段取代上面的死循环 12/08
+  for(tmp=0;tmp<100000;++tmp) NOP_Process(); // CXG: 12/08
   
   bDeviceState = CONFIGURED;
 }

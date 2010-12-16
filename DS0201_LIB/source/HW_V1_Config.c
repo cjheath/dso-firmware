@@ -181,8 +181,8 @@ void GPIO_Config(void)
                 +------------ Nib15 NC    Pull up input*/  
   GPIOD_ODR = 0x0FF7F;
   
-  GPIOE_CRL = 0x33333333;   //Bit0-7  Hight speed output£¨LCD_DB0-7 £©
-  GPIOE_CRH = 0x33333333;   //Bit8-15 Hight speed output£¨LCD_DB8-15£©
+  GPIOE_CRL = 0x33333333;   //Bit0-7  Hight speed output (LCD_DB0-7 )
+  GPIOE_CRH = 0x33333333;   //Bit8-15 Hight speed output (LCD_DB8-15)
  
   AFIO_MAPR = 0x00001200;  /* AF remap and debug I/O configuration register Bit0-31 
                 ||||||++----- Reset value
@@ -292,7 +292,7 @@ void ADC_Configuration(void)
                |+++++++---SMP11-17=000(3Bits*7)
                ++---------Reserved*/
   ADC1_CR2 |=0x00000001; 
-  ADC2_CR2 |=0x00000001;       //ADON=1£ºADC1¡¢ADC2 Start
+  ADC2_CR2 |=0x00000001;       //ADON=1 : ADC1 & ADC2 Start
   ADC1_CR2 |=0x00000008; 
   while(ADC1_CR2 & 0x00000008);//ADC1 Initialize calibration register
   ADC2_CR2 |=0x00000008; 
@@ -376,8 +376,8 @@ void Timer_Configuration(void)
 
 //-----------------TIM3 used in system-------------------  
   TIM3_PSC  =9; 
-  TIM3_ARR  =7199;  //1mS =£¨PSC+1£©¡Á£¨ARR+1£©/£¨72MHz/2£©£¨uS£©
-  TIM3_CCR1 =3600; //duty=50%
+  TIM3_ARR  =7199; // 1 mS = (PSC+1) x (ARR+1) / (72MHz/2) (uS)
+  TIM3_CCR1 =3600; // duty cycle = 50%
   TIM3_CR1 = 0x0084;/*0000 0000 1000 0100  
                       |||| |||| |||| |||+---CEN=0
                       |||| |||| |||| ||+----UDIS=0

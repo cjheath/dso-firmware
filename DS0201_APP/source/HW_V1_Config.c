@@ -68,33 +68,33 @@ void     Set_Range(char Range)
       RANGE_C_HIGH();
       RANGE_D_LOW();
       break;
-   case 10: // 0.2V/Div £¨20mV ¡Á10/Div£© 
+   case 10: // 0.2V/Div (20mV x 10/Div)
 
-   case 11: // 0.5V/Div £¨50mV ¡Á10/Div£©
+   case 11: // 0.5V/Div (50mV x 10/Div)
 
-   case 12: // 1V/Div £¨0.1V ¡Á10/Div£©
+   case 12: // 1V/Div (0.1V x 10/Div)
 
       RANGE_A_HIGH();
       RANGE_B_LOW();
       RANGE_C_HIGH();
       RANGE_D_LOW();
       break;
-   case 13: // 2V/Div £¨0.2V ¡Á10/Div£©
+   case 13: // 2V/Div (0.2V x 10/Div)
 
-   case 14: // 5V/Div £¨0.5V ¡Á10/Div£©
+   case 14: // 5V/Div (0.5V x 10/Div)
 
-   case 15: // 10V/Div £¨  1V ¡Á10/Div£©
+   case 15: // 10V/Div ( 1V x 10/Div)
 
       RANGE_A_LOW();
       RANGE_B_LOW();
       RANGE_C_HIGH();
       RANGE_D_LOW();
       break;
-   case 16: // 20V/Div £¨ 2V ¡Á10/Div£©
+   case 16: // 20V/Div ( 2V x 10/Div)
 
-   case 17: // 50V/Div £¨ 5V ¡Á10/Div£©
+   case 17: // 50V/Div ( 5V x 10/Div)
 
-   case 18: // 100V/Div £¨10V ¡Á10/Div£©
+   case 18: // 100V/Div (10V x 10/Div)
 
       RANGE_A_HIGH();
       RANGE_B_HIGH();
