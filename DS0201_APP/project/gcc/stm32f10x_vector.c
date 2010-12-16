@@ -32,7 +32,7 @@ typedef union { intfunc __fun; void * __ptr; } intvec_elem;
 
 void Reset_Handler( void );
 void *_estack;
-#define BootRAM 0xF108F85F
+#define BootRAM (void *) 0xF108F85F
 
 /* STM32F10x Vector Table entries */
 const intvec_elem __vector_table[] __attribute__ ((section(".isr_vector"))) =
