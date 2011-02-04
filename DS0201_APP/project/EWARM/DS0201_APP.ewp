@@ -855,14 +855,14 @@
     <file>
       <name>$PROJ_DIR$\..\..\source\stm32f10x_it.c</name>
     </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\source\stm32f10x_vector.c</name>
+    </file>
   </group>
   <group>
     <name>EWARM</name>
     <file>
       <name>$PROJ_DIR$\cortexm3_macro.s</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\stm32f10x_vector.c</name>
     </file>
   </group>
   <group>
