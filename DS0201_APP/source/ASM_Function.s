@@ -58,23 +58,23 @@ CH2_COLOR     = (RGB(63,63,0) & ~F_SELEC) | CH2_FLAG
 REF_COLOR     = (RGB(63,0,63) & ~F_SELEC) | REF_FLAG
 
 ;*******************************************************************************
-; Table of library functions start address
+; Table of library functions start address, based on LIB memory map
 ;*******************************************************************************
-__CTR_HP                  ;void __CTR_HP(void)
-    B       0x08004159
 __USB_Istr                ;void __USB_Istr(void);
-    B       0x08004155
+    B       0x0800410F
+__CTR_HP                  ;void __CTR_HP(void)
+    B       0x08004113
 ;-------------------------------------------------------------------------------
 __MSD_WriteBlock          ;u8 __MSD_WriteBlock(u8* pBuffer, u32 WriteAddr, u16 NumByteToWrite)
-    B       0x0800415D 
+    B       0x08004117 
 __MSD_ReadBlock           ;u8 __MSD_ReadBlock(u8* pBuffer, u32 ReadAddr, u16 NumByteToRead)
-    B       0x08004161 
+    B       0x0800411B 
 __Get_Font_8x14           ;u16 __Get_TAB_8x14(unsigned char Code, unsigned short Row)
-    B       0x08004165
+    B       0x0800411F
 __Get_Ref_Wave            ;u8 __Get_Ref_Wave(unsigned short i)
-    B       0x08004169
+    B       0x08004123
 __SD_Set_Changed          ;void __SD_Set_Changed(void)
-    B       0x0800416D
+    B       0x08004127
 
 ;*******************************************************************************
 __Add_Color:            ;void __Add_Color(unsigned short x,unsigned short y,unsigned short Color)

@@ -24,7 +24,7 @@
 .thumb
 .text
 #else
-  RSEG CODE:CODE(2)
+  RSEG branchtab:CODE(2)
 #endif
   
 ;*******************************************************************************

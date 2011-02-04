@@ -112,6 +112,7 @@
 // Startup code and exception routines (ICODE).
 //************************************************
 
+-Z(CODE)branchtab=ROMSTART-ROMEND
 -Z(CODE)ICODE,DIFUNCT=ROMSTART-ROMEND
 -Z(CODE)SWITAB=ROMSTART-ROMEND
 
