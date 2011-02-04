@@ -30,8 +30,8 @@
 ;*******************************************************************************
 ; Table of library function start addresses
 ;*******************************************************************************
-__BRANCH_TABLE             ; needed placeholder, used to be __APP_Start
-    B       0x00000000
+__BRANCH_TABLE             ; dummy
+    B       __BRANCH_TABLE
 __USB_Istr                 ;
     B       USB_Istr
 __CTR_HP                   ;
