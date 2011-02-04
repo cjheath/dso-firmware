@@ -29,6 +29,11 @@ typedef union { intfunc __fun; void * __ptr; } intvec_elem;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
+#if defined(__IAR_SYSTEMS_ICC__)
+# if (__VER__ >= 500)
+#  define __program_start __iar_program_start
+# endif
+#endif
 
 #pragma language=extended
 #pragma segment="CSTACK"
