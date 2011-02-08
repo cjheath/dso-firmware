@@ -31,6 +31,7 @@ CFLAGS  = $(MFLAGS) $(INCLUDES) -c -fno-common -Os -g
 LFLAGS  = $(MFLAGS) -T $(LNKSCRIPT) -nostartfiles
 
 CSRC = \
+       $(PRJ)/source/stm32f10x_vector.c \
        $(PRJ)/source/stm32f10x_it.c \
        $(PRJ)/source/main.c \
        $(PRJ)/source/HW_V1_Config.c \
@@ -56,8 +57,6 @@ CSRC += \
        $(USB_LIB)/src/usb_int.c \
        $(USB_LIB)/src/usb_mem.c \
        $(USB_LIB)/src/usb_regs.c
-CSRC += \
-       stm32f10x_vector.c
 
 COBJ = $(CSRC:.c=.o)
 

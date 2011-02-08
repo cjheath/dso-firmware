@@ -32,10 +32,10 @@ typedef union { intfunc __fun; void * __ptr; } intvec_elem;
 #define BootRAM (void *) 0xF108F85F /* workaround for booting from RAM */
 
 #if defined(__IAR_SYSTEMS_ICC__)
+
 # if (__VER__ < 500)
 #  define __iar_program_start __program_start
 # endif
-#endif
 
 #pragma language=extended
 #pragma segment="CSTACK"
@@ -48,6 +48,18 @@ const intvec_elem __vector_table[] =
 {
   { .__ptr = __sfe( "CSTACK" ) },
   __iar_program_start,
+
+#else
+
+void Reset_Handler( void );
+void *_estack;
+
+const intvec_elem __vector_table[] __attribute__ ((section(".isr_vector"))) =
+{
+  { .__ptr = &_estack },
+  Reset_Handler,
+
+#endif /* IAR */
   NMIException,
   HardFaultException,
   MemManageException,
