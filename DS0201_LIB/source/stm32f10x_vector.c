@@ -32,22 +32,22 @@ typedef union { intfunc __fun; void * __ptr; } intvec_elem;
 #define BootRAM (void *) 0xF108F85F /* workaround for booting from RAM */
 
 #if defined(__IAR_SYSTEMS_ICC__)
-# if (__VER__ >= 500)
-#  define __program_start __iar_program_start
+# if (__VER__ < 500)
+#  define __iar_program_start __program_start
 # endif
 #endif
 
 #pragma language=extended
 #pragma segment="CSTACK"
 
-void __program_start( void );
+void __iar_program_start( void );
 
-#pragma location = "INTVEC"
+#pragma location = ".intvec"
 /* STM32F10x Vector Table entries */
 const intvec_elem __vector_table[] =
 {
   { .__ptr = __sfe( "CSTACK" ) },
-  __program_start,
+  __iar_program_start,
   NMIException,
   HardFaultException,
   MemManageException,

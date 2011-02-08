@@ -107,7 +107,7 @@
 // vectors (INTVEC).
 //************************************************
 
--Z(CODE)INTVEC=ROMSTART-ROMEND
+-Z(CODE).intvec=ROMSTART-ROMEND
 
 //************************************************
 // Startup code and exception routines (ICODE).
