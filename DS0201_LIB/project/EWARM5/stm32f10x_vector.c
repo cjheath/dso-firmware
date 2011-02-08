@@ -29,6 +29,7 @@ typedef union { intfunc __fun; void * __ptr; } intvec_elem;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
+#define BootRAM (void *) 0xF108F85F /* workaround for booting from RAM */
 
 #pragma language=extended
 #pragma segment="CSTACK"
@@ -96,6 +97,8 @@ const intvec_elem __vector_table[] =
   EXTI15_10_IRQHandler,
   RTCAlarm_IRQHandler,
   USBWakeUp_IRQHandler,
+  0, 0, 0, 0, 0, 0, 0,
+  {.__ptr = BootRAM},
 };
 
 /******************* (C) COPYRIGHT 2007 STMicroelectronics *****END OF FILE****/
